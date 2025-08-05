@@ -10,9 +10,9 @@
   "author": "Vikash",
   "type": "module",
   "scripts": {
-    "test": "jest",
     "start":"parcel index.html",
-    "buuild":"parcel build index.html"
+    "build":"parcel build index.html",
+    "test": "jest"
   },
   "dependencies": {
     "parcel": "^2.15.4",
