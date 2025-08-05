@@ -1,0 +1,21 @@
+{
+  "name": "namaste_node",
+  "version": "1.0.0",
+  "description": "this is pakage",
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/singhvi1/NamasteReact.git)"
+  },
+  "license": "ISC",
+  "author": "Vikash",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "start":"parcel index.html"
+  },
+  "dependencies": {
+    "parcel": "^2.15.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
+}
