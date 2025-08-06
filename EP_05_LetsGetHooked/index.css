@@ -36,8 +36,8 @@
     cursor: pointer;
     border: 3px solid black
 }
-.search{
-    padding: 10px;
+.filter-btn{
+    margin: 10px;
 }
 .res-logo{
     
