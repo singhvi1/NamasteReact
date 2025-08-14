@@ -1,6 +1,6 @@
 import { CDN_URL } from "../utils/contants";
 
-const ReastaurantCards = (props) => {
+const RestaurantCards = (props) => {
   const {resData}=props;
   const {cloudinaryImageId,name,avgRating,cuisines,costForTwo,locality,areaName}=resData?.info
   return (
@@ -11,12 +11,12 @@ const ReastaurantCards = (props) => {
         src={CDN_URL+cloudinaryImageId}
       />
       <h3>{name}</h3>
-      <h5>{avgRating} star</h5>
-      <h5>{cuisines.join(",")}</h5>
-      <h5>{costForTwo} For two</h5>
-      <h5>loacion :{areaName + ", "+locality}</h5>
+      <h4>{avgRating} star</h4>
+      <h4 className="cuisines">{cuisines.join(",")}</h4>
+      <h4>{costForTwo} For two</h4>
+      <h4>loacion :{areaName + ", "+locality}</h4>
     </div>
   );
 };
 
-export default ReastaurantCards;
+export default RestaurantCards;

@@ -27,4 +27,14 @@
             >Named Exports/imports
                 export const Components
                 import {components} fomr "relative Path"
-        2.
+        2
+    #Finding the  Path:
+        1.Client Side Routing
+        2.Server Side Routing
+        3.Error.js 
+        4.useRouterError() hook
+        5.outlet function 
+        6.Link(NavLink with styling) instead of anchor tag
+        7.children Routing
+        8.createBrowserRouter, RouterProvider
+        
