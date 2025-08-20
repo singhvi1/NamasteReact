@@ -8,7 +8,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
-import Shimmer from "./components/Shimmer";
+import Shimmer from "./utils/Shimmer";
 
 
 // import Grocery from "./components/Grocery";

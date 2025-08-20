@@ -41,4 +41,13 @@
         1.Custom Hooks 
         2.Chunking/codeSplitting/Dynamic Bundling/Lazy Loading/OnDemand loading   
         3. Suspense : lazy import : fallback etc 
-    
+    #JoDikhtaHaiWobiktakHai
+        1.installation tailwind
+        
+    #DataIsNewOil
+        1.HOF
+        2.passing children via HOF
+        3.lifting the  state up :
+        4.filtering data ?.["@xyz"] 
+        5.controlled vs Uncontrolled Components
+        6.

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useOnelineStatus=()=>{
+const useOnlineStatus=()=>{
     const [onlineStatus,setOnlineStatus]=useState(true)
     //check if online
     useEffect(()=>{
@@ -15,4 +15,4 @@ const useOnelineStatus=()=>{
     return onlineStatus; // return boolean value
 }
 
-export default useOnelineStatus;
+export default useOnlineStatus;
