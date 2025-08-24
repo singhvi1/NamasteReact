@@ -1,4 +1,4 @@
-import { useState ,useContext} from "react";
+import { useState, useContext } from "react";
 import { NavLink } from "react-router";
 import { LOGO_URL } from "../utils/contants";
 import useOnlineStatus from "../Hooks/useOnlineStatus";
@@ -8,7 +8,7 @@ const Header = () => {
   const [btnName, setBtnName] = useState("login");
   const OnelineStatus = useOnlineStatus();
   const data = useContext(UserContext);
-  console.log(data)
+  console.log(data);
   console.log("header called");
 
   //useEffect   will be called on every render => no array xx
@@ -58,8 +58,8 @@ const Header = () => {
             >
               {btnName}
             </button>
-            <li>{data.loogedInUser}</li>
           </li>
+          <li >{data.loggedInUser}</li>
         </ul>
       </div>
     </div>

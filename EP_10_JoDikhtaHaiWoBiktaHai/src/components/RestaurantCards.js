@@ -1,7 +1,11 @@
 import { CDN_URL } from "../utils/contants";
-
+import UserContext from "../utils/UserContext";
+import { useContext } from "react";
 const RestaurantCards = (props) => {
   const { resData, children } = props;
+  
+const data = useContext(UserContext);
+
   const {
     cloudinaryImageId,
     name,
@@ -62,6 +66,7 @@ const RestaurantCards = (props) => {
       <p className="text-sm text-gray-500 truncate">
         📍 {areaName === locality ? areaName : `${locality}, ${areaName}`}
       </p>
+      <h3>{data.loggedInUser}</h3>
     </div>
   );
 };

@@ -1,19 +1,20 @@
-import RestaurantCards , {withOfferCard} from "./RestaurantCards";
-import { useEffect, useState } from "react";
+import RestaurantCards, { withOfferCard } from "./RestaurantCards";
+import { useEffect, useState, useContext } from "react";
 import Shimmer from "../utils/Shimmer";
 import { NavLink } from "react-router";
 import useRestaurantList from "../Hooks/useRestaurentList";
 import useOnlineStatus from "../Hooks/useOnlineStatus";
-
+import UserContext from "../utils/UserContext";
 const Body = () => {
   // const [listOfRestaurents, setListOfRestaurent] = useState([]);
   const listOfRestaurents = useRestaurantList();
   const [filterResList, setFilterResList] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const onlineStatus=useOnlineStatus()
-  const OfferRestaurantCard=withOfferCard(RestaurantCards);
+  const onlineStatus = useOnlineStatus();
+  const OfferRestaurantCard = withOfferCard(RestaurantCards);
+  const {loggedInUser,setUserName}=useContext(UserContext);
 
-  console.log("body called")
+  console.log("body called");
 
   //fetching data from Swiggy Api
   useEffect(() => {
@@ -34,8 +35,7 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-
-    {/* search + filter */}
+      {/* search + filter */}
       <div className="search flex flex-wrap items-center justify-center gap-4 my-6 p-4 rounded-lg">
         <input
           type="text"
@@ -71,8 +71,14 @@ const Body = () => {
         >
           Top Rated Restaurent
         </button>
+        <label>Search</label>
+        <input 
+        type="text" 
+        className="border to-black p-2"
+        value={loggedInUser} 
+        onChange={(e)=>{setUserName(e.target.value)}} 
+        />
       </div>
-
 
       {/*cards of restaurents */}
       <div className="res-container flex flex-wrap mx-2 px-2 justify-center">
@@ -81,7 +87,12 @@ const Body = () => {
             key={restaurent.info.id}
             to={`/restaurants/${restaurent.info.id}`}
           >
-            {restaurent?.info?.aggregatedDiscountInfoV3?.header || restaurent?.info?.aggregatedDiscountInfoV3?.subHeader ? <OfferRestaurantCard resData={restaurent}/> :  <RestaurantCards resData={restaurent} />}
+            {restaurent?.info?.aggregatedDiscountInfoV3?.header ||
+            restaurent?.info?.aggregatedDiscountInfoV3?.subHeader ? (
+              <OfferRestaurantCard resData={restaurent} />
+            ) : (
+              <RestaurantCards resData={restaurent} />
+            )}
           </NavLink>
         ))}
       </div>
