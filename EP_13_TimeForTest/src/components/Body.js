@@ -1,7 +1,7 @@
 import RestaurantCards, { withOfferCard } from "./RestaurantCards";
 import { useEffect, useState, useContext } from "react";
 import Shimmer from "../utils/Shimmer";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 import useRestaurantList from "../Hooks/useRestaurentList";
 import useOnlineStatus from "../Hooks/useOnlineStatus";
 import UserContext from "../utils/UserContext";
@@ -12,9 +12,9 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const onlineStatus = useOnlineStatus();
   const OfferRestaurantCard = withOfferCard(RestaurantCards);
-  const {loggedInUser,setUserName}=useContext(UserContext);
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
-  console.log("body called");
+  // console.log("body called");
 
   //fetching data from Swiggy Api
   useEffect(() => {
@@ -72,11 +72,13 @@ const Body = () => {
           Top Rated Restaurent
         </button>
         <label>Search</label>
-        <input 
-        type="text" 
-        className="border to-black p-2"
-        value={loggedInUser} 
-        onChange={(e)=>{setUserName(e.target.value)}} 
+        <input
+          type="text"
+          className="border to-black p-2"
+          value={loggedInUser}
+          onChange={(e) => {
+            setUserName(e.target.value);
+          }}
         />
       </div>
 

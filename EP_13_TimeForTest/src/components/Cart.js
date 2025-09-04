@@ -1,9 +1,6 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ItemList from "./ItemList";
 import { clearCart } from "../utils/cartSlice.js";
-import { jsx } from "react/jsx-runtime";
-import { HiH1 } from "react-icons/hi2";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
@@ -14,18 +11,19 @@ const Cart = () => {
   };
 
   return (
-    <div className="flex flex-col m-auto">
+    <div className="flex flex-col items-center ">
       <h2 className="text-center font-bold text-2xl">Cart</h2>
-
-      <div className="w-6/12 m-auto">
-        <button
-          className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition inline-flex"
+      <button
+          className="px-4 m-4  py-2 bg-black text-white rounded-lg w-fit"
           onClick={handleClearCart}
         >
           Clear Cart
         </button>
+
+      <div className="w-6/12 m-auto">
+        
         {cartItems.length === 0 && (
-          <h1> cart is empty add item to cart go for shopping </h1>
+          <h1 className="font-bold text-3xl text-center"> cart is empty add item  for shopping </h1>
         )}
         <ItemList items={cartItems} />
       </div>

@@ -3,8 +3,9 @@ import UserContext from "../utils/UserContext";
 import { useContext } from "react";
 const RestaurantCards = (props) => {
   const { resData, children } = props;
-  
-const data = useContext(UserContext);
+  console.log(resData);
+
+  const data = useContext(UserContext);
 
   const {
     cloudinaryImageId,
@@ -14,13 +15,14 @@ const data = useContext(UserContext);
     costForTwo,
     locality,
     areaName,
-    sla
+    sla,
   } = resData?.info;
 
   const { header, subHeader } =
     props.resData?.info?.aggregatedDiscountInfoV3 || {};
   // console.log(header, subHeader);
   // console.log(resData?.info.aggregatedDiscountInfoV3);
+  // console.log(resData?.info);
   return (
     <div className="res-card bg-white-100 rounded-lg w-72 m-4 p-4  transition-transform transform hover:scale-105 hover:shadow-lg">
       <div className="relative">

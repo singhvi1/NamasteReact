@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 import { LOGO_URL } from "../utils/contants";
 import useOnlineStatus from "../Hooks/useOnlineStatus";
 import UserContext from "../utils/UserContext";
@@ -10,10 +10,10 @@ const Header = () => {
   const OnelineStatus = useOnlineStatus();
   const data = useContext(UserContext);
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
+  // console.log(cartItems);
 
-  console.log(data);
-  console.log("header called");
+  // console.log(data);
+  // console.log("header called");
 
   return (
     <div className="header  flex justify-between items-center  bg-[#ff5200]  mb-2 px-3 py-2  w-full  z-50">

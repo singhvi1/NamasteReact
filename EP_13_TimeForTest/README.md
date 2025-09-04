@@ -59,4 +59,18 @@
         4.Slice (cartSlice) Create a Cart Slice
         5.Dispatch(action)
         6.Selctor
-        
+    #Types of testing
+        1.Unit Testing
+        2.Integration Testing
+        3.End to End Testing or e2e testing(sellneuim)
+    #Setting up Testing in our app
+        1.install React testing lib
+        2.Instlled jest 
+        3.Installed Babel depencdecies
+        4.Config Beabel
+        5.Configure Parcel file to disable defalt Babel transpiilatoin
+        6.jest configuratoin
+        7.Install jsdom library
+        8.install  @babel/preset-react to make jsx work in test case ;
+        9.Include  @babel/preset-react inside our bebel config
+        10.npm i -D @testing-library/jest-dom
