@@ -3,7 +3,7 @@ import UserContext from "../utils/UserContext";
 import { useContext } from "react";
 const RestaurantCards = (props) => {
   const { resData, children } = props;
-  console.log(resData);
+  // console.log(resData);
 
   const data = useContext(UserContext);
 
@@ -24,7 +24,7 @@ const RestaurantCards = (props) => {
   // console.log(resData?.info.aggregatedDiscountInfoV3);
   // console.log(resData?.info);
   return (
-    <div className="res-card bg-white-100 rounded-lg w-72 m-4 p-4  transition-transform transform hover:scale-105 hover:shadow-lg">
+    <div data-testid="resCard" className="res-card bg-white-100 rounded-lg w-72 m-4 p-4  transition-transform transform hover:scale-105 hover:shadow-lg">
       <div className="relative">
         <img
           className="res-logo w-full h-40 object-cover  rounded-lg"

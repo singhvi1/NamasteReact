@@ -39,6 +39,7 @@ const Body = () => {
       <div className="search flex flex-wrap items-center justify-center gap-4 my-6 p-4 rounded-lg">
         <input
           type="text"
+          data-testid="searchInput"
           className="search-box border border-solid-black rounded px-4 py-2  w-full sm:w-64"
           placeholder=" Enter Restaurent"
           value={searchText}
@@ -83,10 +84,9 @@ const Body = () => {
       </div>
 
       {/*cards of restaurents */}
-      <div className="res-container flex flex-wrap mx-2 px-2 justify-center">
+      <div  className="res-container flex flex-wrap mx-2 px-2 justify-center">
         {filterResList.map((restaurent) => (
-          <NavLink
-            key={restaurent.info.id}
+          <NavLink key={restaurent.info.id}
             to={`/restaurants/${restaurent.info.id}`}
           >
             {restaurent?.info?.aggregatedDiscountInfoV3?.header ||

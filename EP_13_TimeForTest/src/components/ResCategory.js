@@ -1,4 +1,3 @@
-  import { useState } from "react";
   import ItemList from "./ItemList";
   import { ChevronDown } from "lucide-react"; // ✅ Import icon
 

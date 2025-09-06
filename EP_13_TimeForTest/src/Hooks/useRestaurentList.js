@@ -18,7 +18,7 @@ const useRestaurantList = () => {
           ?.restaurants; //optional chaining;
 
       // console.log(json.data.cards);
-      setListOfRestaurent(restaurants); //optional chaining to stop crashing on null or undefined;
+      setListOfRestaurent(restaurants || []); //optional chaining to stop crashing on null or undefined;
       // setFilterResList(restaurants);
     } catch (error) {
       console.log("something wrong while fetching data", error);

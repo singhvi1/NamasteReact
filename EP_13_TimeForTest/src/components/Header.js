@@ -53,7 +53,7 @@ const Header = () => {
               className="login hover:cursor-pointer  hover:underline "
               onClick={() => {
                 setBtnName(btnName === "login" ? "logout" : "login");
-                console.log(btnName);
+                // console.log(btnName);
               }}
             >
               {btnName}
