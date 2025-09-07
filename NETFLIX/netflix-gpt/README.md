@@ -1,6 +1,10 @@
 # React + Vite
     -create vite@latest
     -configure tailwind
+    -Header and all components
+    -Routing
+    -Sign UP/Login Form  and its toggle
+    -Form Validation
     -
 
 # Features: 
