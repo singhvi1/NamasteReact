@@ -2,31 +2,92 @@ import { useRef, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { checkValidData } from "../utils/validate";
+import { auth } from "../utils/firebase";
+import { useDispatch } from "react-redux";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
+  const dispatch = useDispatch();
 
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
   };
-  const handleButtonClick = () => {
+  const handleButtonClick = (e) => {
+    e.preventDefault();
     let message = null;
+    const emailValue = email.current.value.trim();
+    const passwordValue = password.current.value.trim();
+    const nameValue = !isSignInForm ? name.current.value.trim() : null;
+    console.log(nameValue, emailValue, passwordValue);
+    setLoading(true);
+
     if (!isSignInForm) {
-      message = checkValidData(
-        email.current.value,
-        password.current.value,
-        name.current.value
-      );
+      message = checkValidData(emailValue, passwordValue, name.current.value);
     } else {
-      message = checkValidData(email.current.value, password.current.value);
+      message = checkValidData(emailValue, passwordValue);
     }
     setErrorMessage(message);
-    console.log(email.current.value, password.current.value)
+    if (message) return message;
+    // console.log(emailValue, passwordValue);
+
+    if (!isSignInForm) {
+      //signUp
+      createUserWithEmailAndPassword(auth, emailValue, passwordValue)
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          updateProfile(user, {
+            displayName: nameValue,
+            photoURL: "https://avatars.githubusercontent.com/u/120703712?v=4",
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+            })
+            .catch((error) => {
+              setErrorMessage(error);
+            });
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        })
+        .finally(() => setLoading(false));
+    } else {
+      //signIn
+      signInWithEmailAndPassword(auth, emailValue, passwordValue)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        })
+        .finally(() => setLoading(false));
+    }
   };
 
   return (
@@ -41,8 +102,8 @@ const Login = () => {
 
       <form
         action=""
-        onSubmit={(e) => e.preventDefault()}
-        className="absolute p-12 bg-black/85 m-36 mx-auto right-0 left-0 w-4/12 text-white"
+        type="submit"
+        className="absolute  p-12 bg-black/85 m-36 mx-auto right-0 left-0 w-4/12 text-white"
       >
         <h1 className="font-bold text-3xl py-4">
           {isSignInForm ? "Sign In" : "Sign Up"}
@@ -57,7 +118,7 @@ const Login = () => {
         )}
         <input
           ref={email}
-          type="text"
+          type="email"
           placeholder={
             isSignInForm ? "Email or Mobile Number" : "Email Address"
           }
@@ -68,6 +129,7 @@ const Login = () => {
           type="password"
           placeholder="Password"
           className="p-4 my-4 w-full border rounded-lg "
+          autoComplete="current-password"
         ></input>
         {errorMessage && (
           <p className="text-red-500 font-bold py-2">{errorMessage}</p>
@@ -75,8 +137,9 @@ const Login = () => {
         <button
           className="p-4 my-6 w-full  bg-red-700 rounded-lg"
           onClick={handleButtonClick}
+          disabled={loading}
         >
-          {isSignInForm ? "Sign In " : "Sign Up"}
+          {loading ? "Processing.." : isSignInForm ? "Sign In " : "Sign Up"}
         </button>
         <p className="py-4 cursor-pointer" onClick={toggleSignInForm}>
           {isSignInForm
