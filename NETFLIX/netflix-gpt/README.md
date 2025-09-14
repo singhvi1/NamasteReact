@@ -27,7 +27,11 @@
     -update Stroe with TraileVideo Data 
     -EMbedded the Youtube Video make it autoPlay and mute 
     -Tailwind classes to make main container look awesome by chatgpt
-    -
+    -Build Secondary Component
+    -Build MovieList , MovieCard 
+    -remove scroll bar and UI better 
+    -make diffrent custum hooks 
+    
 
 
     

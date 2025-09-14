@@ -10,10 +10,16 @@ const MainContainer = () => {
   // console.log(title);
   // Dig into streamingOptions
   const netflixOption = mainMovie.streamingOptions?.in?.[0];
-
+  const fallback = mainMovie?.imageSet.verticalPoster?.w720;
+  // console.log(fallback)
+  // console.log(mainMovie);
   return (
-    <div className="   w-full flex items-center justify-center">
-      <VideoBackground title={title} releaseYear={releaseYear} />
+    <div className="w-full flex items-center justify-center">
+      <VideoBackground
+        title={title}
+        releaseYear={releaseYear}
+        fallback={fallback}
+      />
       <VideoTitle
         title={title}
         overview={overview}

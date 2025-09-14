@@ -6,7 +6,14 @@ export const LOGO =
   "https://net2025.cc/img/user-account2.png";
   
   export const  API_URL = 'https://streaming-availability.p.rapidapi.com/shows/search/filters?country=in&series_granularity=show&order_direction=asc&order_by=original_title&genres_relation=and&output_language=en&show_type=movie';
-  
+  export const HORRORMOVIE_API="https://streaming-availability.p.rapidapi.com/shows/search/filters?country=in&series_granularity=show&genres=horror&order_direction=asc&order_by=original_title&genres_relation=and&output_language=en&show_type=movie"
+
+  export const POPULARMOVIES_API="https://streaming-availability.p.rapidapi.com/shows/search/filters?country=in&series_granularity=show&order_direction=asc&order_by=popularity_1year&genres_relation=and&output_language=en&show_type=movie";
+
+  export const SCI_FI_API="https://streaming-availability.p.rapidapi.com/shows/search/filters?country=in&genres=SciFi&order_direction=asc&order_by=original_title&genres_relation=and&output_language=en&show_type=movie"
+  export const ANIMATOIN_MOVIES_API="https://streaming-availability.p.rapidapi.com/shows/search/filters?country=in&genres=Animation&order_direction=asc&order_by=original_title&genres_relation=and&output_language=en&show_type=movie"
+
+
   export const API_OPTIONS = {
     method: "GET",
     headers: {
