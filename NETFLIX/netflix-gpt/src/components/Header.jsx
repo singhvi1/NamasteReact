@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { LogOut, User, Settings } from "lucide-react";
 import { addUser, removeUser } from "../utils/userSlice";
-
+import { LOGO } from "../utils/constants";
 const Header = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -39,16 +39,16 @@ const Header = () => {
     if (showDropDown) {
       timeoutId = setTimeout(() => {
         setShowDropDown(false);
-      }, 3000); // auto close after 5s
+      }, 3000); 
     }
 
     // Cleanup all
     return () => {
       unsubscribe();
       document.removeEventListener("mousedown", handleClickOutside);
-      clearTimeout(timeoutId); // cleanup timeout
+      clearTimeout(timeoutId);
     };
-  }, [dispatch, showDropDown]); // 👈 dependency on showDropDown
+  }, []); 
 
   // Sign Out
   const handleSignout = () => {
@@ -68,7 +68,7 @@ const Header = () => {
       {/* Netflix Logo */}
       <img
         className="w-44 cursor-pointer"
-        src="https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production_2025-08-26/consent/87b6a5c0-0104-4e96-a291-092c11350111/0198e689-25fa-7d64-bb49-0f7e75f898d2/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+        src={LOGO}
         alt="logo"
       />
 
@@ -78,7 +78,7 @@ const Header = () => {
           <img
             src={user?.photoURL}
             alt="userLogo"
-            className="w-10 h-10 rounded-full cursor-pointer border border-gray-300 hover:scale-105 transition"
+            className="w-10 h-10 rounded-lg cursor-pointer border-gray-300 hover:scale-105 transition"
             onClick={() => setShowDropDown(!showDropDown)}
           />
 
