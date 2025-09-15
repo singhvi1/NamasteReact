@@ -5,13 +5,17 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { LogOut, User, Settings } from "lucide-react";
 import { addUser, removeUser } from "../utils/userSlice";
-import { LOGO } from "../utils/constants";
+import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
+import { toggleGptSearchView } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/configSlice";
 const Header = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [showDropDown, setShowDropDown] = useState(false);
   const dropdownRef = useRef(null);
   const dispatch = useDispatch();
+  const langKey = useSelector((store) => store.config.lang);
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 
   useEffect(() => {
     // 1️⃣ Auth listener
@@ -19,10 +23,10 @@ const Header = () => {
       if (user) {
         const { uid, email, displayName, photoURL } = user;
         dispatch(addUser({ uid, email, displayName, photoURL }));
-        navigate("/browse")
+        navigate("/browse");
       } else {
         dispatch(removeUser());
-        navigate("/")
+        navigate("/");
       }
     });
 
@@ -39,7 +43,7 @@ const Header = () => {
     if (showDropDown) {
       timeoutId = setTimeout(() => {
         setShowDropDown(false);
-      }, 3000); 
+      }, 3000);
     }
 
     // Cleanup all
@@ -48,7 +52,7 @@ const Header = () => {
       document.removeEventListener("mousedown", handleClickOutside);
       clearTimeout(timeoutId);
     };
-  }, []); 
+  }, []);
 
   // Sign Out
   const handleSignout = () => {
@@ -63,18 +67,42 @@ const Header = () => {
       });
   };
 
+  //GptSearch
+  const handleGptSearchClick = () => {
+    dispatch(toggleGptSearchView());
+  };
+  //languageChange
+  const handleLanguageChange = (e) => {
+    //or useRef
+    dispatch(changeLanguage(e.target.value));
+  };
+
   return (
     <div className="absolute w-full flex justify-between items-center px-8 py-2 bg-gradient-to-b from-black z-30">
       {/* Netflix Logo */}
-      <img
-        className="w-44 cursor-pointer"
-        src={LOGO}
-        alt="logo"
-      />
+      <img className="w-44 cursor-pointer" src={LOGO} alt="logo" />
 
       {user && (
         <div className="relative flex items-center gap-3" ref={dropdownRef}>
-          {/* User Avatar */}
+          {showGptSearch && (
+            <select
+            className="p-2 bg-gray-900 text-white m-2 rounded-lg"
+            onChange={handleLanguageChange}
+            value={langKey}
+          >
+            {SUPPORTED_LANGUAGES.map((lang) => (
+              <option key={lang.identifier} value={lang.identifier}>
+                {lang.name}
+              </option>
+            ))}
+          </select>)}
+
+          <button
+            className="py-2 px-4 mx-4 my-2 bg-purple-800 rounded-lg text-white font-bold cursor-pointer"
+            onClick={handleGptSearchClick}
+          >
+            {!showGptSearch ? "GPT Search" :"Home Page"}
+          </button>
           <img
             src={user?.photoURL}
             alt="userLogo"

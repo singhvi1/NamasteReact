@@ -1,5 +1,3 @@
-import { useState } from "react";
-import MovieInfo from "./MovieInfo";
 
 const MovieCard = ({ poster }) => {
   return (

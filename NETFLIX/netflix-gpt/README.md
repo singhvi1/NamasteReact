@@ -31,7 +31,10 @@
     -Build MovieList , MovieCard 
     -remove scroll bar and UI better 
     -make diffrent custum hooks 
-    
+    -GptSearch page with search bar
+    -(⭐)MultiLanguage Page 
+    -BugFix- select lang value fix from redux
+    -
 
 
     

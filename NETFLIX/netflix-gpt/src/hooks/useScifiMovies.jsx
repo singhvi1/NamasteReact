@@ -9,7 +9,7 @@ const useScifiMovies = () => {
   const getMoviesList = async () => {
     const data = await fetch(SCI_FI_API, API_OPTIONS);
     const json = await data.json();
-    console.log(json.shows)
+    // console.log(json.shows)
     dispatch(addSciFiMovies(json.shows));
   };
 
