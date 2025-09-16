@@ -1,5 +1,6 @@
 
 const MovieCard = ({ poster }) => {
+  if(!poster) return null;
   return (
     <div className="w-[140px] md:w-[180px] flex-shrink-0">
       <img

@@ -22,7 +22,8 @@ export const ANIMATOIN_MOVIES_API =
 export const API_OPTIONS = {
   method: "GET",
   headers: {
-    "x-rapidapi-key": "9b3957246bmsh4ab054e3e02deadp12ecfajsn64d4535534e7",
+    // "x-rapidapi-key": "9b3957246bmsh4ab054e3e02deadp12ecfajsn64d4535534e7",
+    "x-rapidapi-key": "217bd96da1mshc37e36e1b9b4e26p1a0f5djsne9e9f355f140",
     "x-rapidapi-host": "streaming-availability.p.rapidapi.com",
   },
 };

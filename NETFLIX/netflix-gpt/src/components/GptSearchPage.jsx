@@ -5,7 +5,7 @@ import GptSearchBar from "./GptSearchBar"
 const GptSearchPage = () => {
   return (
     <div className="">
-      <div className="img absolute -z-10">
+      <div className="img fixed -z-10">
         <img
           src={BG_URL}
           alt="logo"
